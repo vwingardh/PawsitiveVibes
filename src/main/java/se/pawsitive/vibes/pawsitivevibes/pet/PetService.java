@@ -24,4 +24,23 @@ public class PetService {
     public List<Pet> getAllPets() {
         return petRepo.getAllPets();
     }
+
+    public PetDto createPet(AddPetDto addPetDto) {
+        Pet pet = new Pet();
+        pet.setImg(addPetDto.img());
+        pet.setTag(addPetDto.tag());
+        petRepo.savePet(pet);
+        return convertPetToDto(pet);
+    }
+
+    private static PetDto convertPetToDto(Pet pet) {
+        PetDto petDto = new PetDto(
+                pet.getId(),
+                pet.getImg(),
+                pet.getTag(),
+                pet.getCreated(),
+                pet.getFavorite()
+        );
+        return petDto;
+    }
 }
