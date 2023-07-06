@@ -1,16 +1,14 @@
 package se.pawsitive.vibes.pawsitivevibes.pet;
 
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Transactional
 @Table(name = "pet")
 public class Pet {
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pet_id", nullable = false)
     private Long id;
