@@ -14,26 +14,39 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  border: 0;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 2% 4%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: -5px 3px 20px darkslategrey;
+  flex-basis: 100%;
+  width: 100%;
+}
+
+.card__list {
+  margin-bottom: 6%;
+  text-align: left;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.card__img {
+  max-width: 100%;
+  max-height: 350px;
+  height: auto;
+  margin: auto;
+  object-fit: cover;
 }
 
 button {
@@ -46,6 +59,8 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  display: inline;
+  margin-left: 6%;
 }
 button:hover {
   border-color: #646cff;
@@ -55,15 +70,26 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media screen and (min-width: 768px) {
+  .card {
+    flex-basis: calc(33.33% - 4%); 
   }
-  a:hover {
-    color: #747bff;
+}
+
+@media screen and (min-width: 1024px) {
+  .card {
+    flex-basis: calc(20% - 4%); 
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@media screen and (min-width: 667.5px) {
+  .card {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 1024.5px) {
+  .card {
+    width: 22%;
   }
 }
