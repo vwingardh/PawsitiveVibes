@@ -1,9 +1,14 @@
 package se.pawsitive.vibes.pawsitivevibes.pet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -24,7 +29,13 @@ public class PetController {
     }
 
     @PostMapping
-    public PetDto createPet(@Validated @RequestBody AddPetDto addPetDto) {
-        return service.createPet(addPetDto);
+    public ResponseEntity<Object> createPet(@RequestParam("image") MultipartFile file, @RequestParam("tag") String tag) {
+        try {
+            Pet pet = service.createPet(file, tag);
+            URI location = URI.create("/api/carts/" + pet.getId());
+            return ResponseEntity.created(location).body(pet);
+        } catch (FileNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 }
