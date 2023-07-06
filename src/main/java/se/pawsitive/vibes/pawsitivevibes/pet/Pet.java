@@ -17,7 +17,7 @@ public class Pet {
     private Long id;
 
     @Column(name = "pet_img", nullable = false)
-    private String img;
+    private String imgPath;
 
     @Column(name = "pet_tag", nullable = false)
     private String tag;
@@ -41,9 +41,9 @@ public class Pet {
 
     }
 
-    public Pet(Long id, String img, String tag, LocalDateTime created, int favorite, List<Comment> comments) {
+    public Pet(Long id, String imgPath, String tag, LocalDateTime created, int favorite, List<Comment> comments) {
         this.id = id;
-        this.img = img;
+        this.imgPath = imgPath;
         this.tag = tag;
         this.created = created;
         this.favorite = favorite;
@@ -58,12 +58,12 @@ public class Pet {
         this.id = id;
     }
 
-    public String getImg() {
-        return img;
+    public String getImgPath() {
+        return imgPath;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     public String getTag() {
