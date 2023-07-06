@@ -34,7 +34,7 @@ export const Card = ({ newPet }: NewPetProp ) => {
                     <ul className="card__list">
                         <li><img className="card__img" src={`http://localhost:8080/${pet.imgPath}`} /></li>
                         <li className="">Favorites: {pet.favorite}</li>
-                        <Comment />
+                        {/* <Comment petId={pet.id} /> */}
                     </ul>
                 </div>
             ))}
