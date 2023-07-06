@@ -1,0 +1,28 @@
+debug: true
+server:
+  port: 9999
+
+spring:
+  sql:
+    output:
+      ansi:
+        enabled: always
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: ${URL_TEST}
+    username: ${USER_TEST}
+    password: ${PASSWORD_TEST}
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR

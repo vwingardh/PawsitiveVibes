@@ -1,0 +1,2 @@
+INSERT INTO pet (pet_img, pet_tag) VALUES ('https://www.nationalgeographic.com/animals/mammals/facts/domestic-cat', 'cat') ON CONFLICT DO NOTHING;
+INSERT INTO pet (pet_img, pet_tag) VALUES ('https://www.nationalgeographic.com/animals/mammals/facts/domestic-cat', 'test') ON CONFLICT DO NOTHING;
