@@ -2,8 +2,11 @@ package se.pawsitive.vibes.pawsitivevibes.pet;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+import se.pawsitive.vibes.pawsitivevibes.comment.Comment;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pet")
@@ -26,6 +29,9 @@ public class Pet {
     @ColumnDefault("0")
     private int favorite;
 
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
     @PrePersist
     protected void created() {
         this.created = LocalDateTime.now();
@@ -35,12 +41,13 @@ public class Pet {
 
     }
 
-    public Pet(Long id, String img, String tag, LocalDateTime created, int favorite) {
+    public Pet(Long id, String img, String tag, LocalDateTime created, int favorite, List<Comment> comments) {
         this.id = id;
         this.img = img;
         this.tag = tag;
         this.created = created;
         this.favorite = favorite;
+        this.comments = comments;
     }
 
     public Long getId() {
@@ -81,5 +88,13 @@ public class Pet {
 
     public void setFavorite(int favorite) {
         this.favorite = favorite;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
