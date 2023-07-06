@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -54,9 +55,14 @@ public class PetController {
     }
 
     @PostMapping("/{petId}/comments")
-    public ResponseEntity<Object> createComment(@PathVariable Long petId, @RequestBody String message) {
-        Comment comment = service.createComment(message, petId);
-        URI location = URI.create("/api/pets/{petId}/comments/" + comment.getId());
-        return ResponseEntity.created(location).body(comment);
+    public ResponseEntity<Object> createComment(@PathVariable Long petId, @RequestBody Map<String, String> body) {
+        try {
+            String message = body.get("message");
+            Comment comment = service.createComment(message, petId);
+            URI location = URI.create("/api/pets/" + petId + "/comments/" + comment.getId());
+            return ResponseEntity.created(location).body(comment);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 }
