@@ -1,10 +1,8 @@
 package se.pawsitive.vibes.pawsitivevibes.pet;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,10 @@ public class PetController {
     @GetMapping
     public List<Pet> getAllPets() {
         return service.getAllPets();
+    }
+
+    @PostMapping
+    public PetDto createPet(@Validated @RequestBody AddPetDto addPetDto) {
+        return service.createPet(addPetDto);
     }
 }
