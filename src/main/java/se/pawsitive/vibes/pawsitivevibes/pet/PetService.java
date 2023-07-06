@@ -50,14 +50,4 @@ public class PetService {
         return pet;
     }
 
-//    private static PetDto convertPetToDto(Pet pet) {
-//        PetDto petDto = new PetDto(
-//                pet.getId(),
-//                pet.getImgPath(),
-//                pet.getTag(),
-//                pet.getCreated(),
-//                pet.getFavorite()
-//        );
-//        return petDto;
-//    }
 }
