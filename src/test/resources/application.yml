@@ -9,9 +9,9 @@ spring:
         enabled: always
   datasource:
     driver-class-name: org.h2.Driver
-    url: ${URL_TEST}
-    username: ${USER_TEST}
-    password: ${PASSWORD_TEST}
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: pguser
+    password: pgpassword
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
@@ -19,7 +19,7 @@ spring:
     show-sql: true
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 logging:
   level:
     org:
