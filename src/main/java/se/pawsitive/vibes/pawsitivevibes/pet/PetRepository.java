@@ -18,4 +18,8 @@ public class PetRepository {
     public List<Pet> getAllPets() {
         return (List<Pet>) repo.findAll();
     }
+
+    public Pet savePet(Pet newPet) {
+        return repo.save(newPet);
+    }
 }
