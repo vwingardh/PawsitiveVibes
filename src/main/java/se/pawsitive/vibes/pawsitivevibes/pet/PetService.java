@@ -40,7 +40,7 @@ public class PetService {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         String directory = "src/main/resources/static/pet-uploads/";
         String filePath = Paths.get(directory, fileName).toString();
-        String fileUrl = "/pet-uploads/" + fileName;
+        String fileUrl = "pet-uploads/" + fileName;
 
         try {
             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
@@ -60,6 +60,9 @@ public class PetService {
 
     public Comment createComment(String message, Long petId) {
         Pet pet = petRepo.getPetById(petId);
+        if (pet == null) {
+            throw new NoSuchElementException("No pet found with id " + petId);
+        }
         Comment comment = new Comment();
         comment.setPet(pet);
         comment.setMessage(message);
