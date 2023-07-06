@@ -15,6 +15,9 @@ spring:
     output:
       ansi:
         enabled: always
+  web:
+    resources:
+      static-locations: file:src/main/resources/static
 logging:
   level:
     org:
