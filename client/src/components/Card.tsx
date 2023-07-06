@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Comment } from './Comment'
 
 type PetDataProps = {
     id: number;
-    img: string;
+    imgPath: string;
     tag: string;
     created: string;
     favorite: number;
@@ -27,15 +28,16 @@ export const Card = ({ newPet }: NewPetProp ) => {
     }, [newPet]);
 
     return (
-        <div className="">
-            <ul className="">
-                {allPets.map((pet) => (
-                    <>
-                    <li key={pet.id}><img src={pet.img} /></li>
-                    <li className="">{pet.favorite}</li>
-                    </>
-                ))}
-            </ul>
-        </div>
+        <>
+            {allPets.map((pet) => (
+                <div key={pet.id} className="card">
+                    <ul className="card__list">
+                        <li><img className="card__img" src={`http://localhost:8080/${pet.imgPath}`} /></li>
+                        <li className="">Favorites: {pet.favorite}</li>
+                        <Comment />
+                    </ul>
+                </div>
+            ))}
+        </>
     )
 }
