@@ -7,10 +7,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import se.pawsitive.vibes.pawsitivevibes.comment.CommentRepository;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -32,19 +29,23 @@ public class PetService {
         return petRepo.getAllPets();
     }
 
-    public Pet createPet(MultipartFile file, String tag) throws FileNotFoundException {
+    public Pet createPet(MultipartFile file, String tag) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         String directory = "src/main/resources/static/pet-uploads/";
         String filePath = Paths.get(directory, fileName).toString();
+        String fileUrl = "/pet-uploads/" + fileName;
 
         try {
             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
-        } catch (FileNotFoundException e) {
+            stream.write(file.getBytes());
+            stream.close();
+        } catch (IOException e) {
             e.printStackTrace();
+            throw new IOException(e.getMessage());
         }
 
         Pet pet = new Pet();
-        pet.setImgPath(filePath);
+        pet.setImgPath(fileUrl);
         pet.setTag(tag);
         petRepo.savePet(pet);
         return pet;

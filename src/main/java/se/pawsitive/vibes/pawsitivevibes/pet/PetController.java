@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
@@ -32,9 +33,11 @@ public class PetController {
     public ResponseEntity<Object> createPet(@RequestParam("image") MultipartFile file, @RequestParam("tag") String tag) {
         try {
             Pet pet = service.createPet(file, tag);
-            URI location = URI.create("/api/carts/" + pet.getId());
+            URI location = URI.create("/api/pets/" + pet.getId());
             return ResponseEntity.created(location).body(pet);
         } catch (FileNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
