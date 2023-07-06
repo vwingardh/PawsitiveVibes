@@ -1,5 +1,6 @@
 package se.pawsitive.vibes.pawsitivevibes.comment;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import se.pawsitive.vibes.pawsitivevibes.pet.Pet;
@@ -24,8 +25,9 @@ public class Comment {
     @ColumnDefault("0")
     private int favorite;
 
-    @ManyToOne
-    @JoinColumn(name = "pet_id")
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "pet_id", nullable = false)
     private Pet pet;
 
     @PrePersist

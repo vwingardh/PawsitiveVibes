@@ -1,5 +1,6 @@
 package se.pawsitive.vibes.pawsitivevibes.pet;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import se.pawsitive.vibes.pawsitivevibes.comment.Comment;
@@ -29,6 +30,7 @@ public class Pet {
     @ColumnDefault("0")
     private int favorite;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
