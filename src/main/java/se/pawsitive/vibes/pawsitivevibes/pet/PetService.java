@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import se.pawsitive.vibes.pawsitivevibes.comment.Comment;
 import se.pawsitive.vibes.pawsitivevibes.comment.CommentRepository;
 
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
@@ -27,6 +29,11 @@ public class PetService {
 
     public List<Pet> getAllPets() {
         return petRepo.getAllPets();
+    }
+
+    public List<Comment> getAllCommentsByPetId(Long petId) throws NoSuchElementException {
+        Pet pet = petRepo.getPetById(petId);
+        return pet.getComments();
     }
 
     public Pet createPet(MultipartFile file, String tag) throws IOException {
@@ -51,4 +58,12 @@ public class PetService {
         return pet;
     }
 
+    public Comment createComment(String message, Long petId) {
+        Pet pet = petRepo.getPetById(petId);
+        Comment comment = new Comment();
+        comment.setPet(pet);
+        comment.setMessage(message);
+        commentRepo.saveComment(comment);
+        return comment;
+    }
 }
