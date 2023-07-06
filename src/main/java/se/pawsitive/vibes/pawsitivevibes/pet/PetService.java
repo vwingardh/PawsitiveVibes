@@ -3,8 +3,15 @@ package se.pawsitive.vibes.pawsitivevibes.pet;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 import se.pawsitive.vibes.pawsitivevibes.comment.CommentRepository;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -25,22 +32,32 @@ public class PetService {
         return petRepo.getAllPets();
     }
 
-    public PetDto createPet(AddPetDto addPetDto) {
+    public Pet createPet(MultipartFile file, String tag) throws FileNotFoundException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String directory = "src/main/resources/static/pet-uploads/";
+        String filePath = Paths.get(directory, fileName).toString();
+
+        try {
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         Pet pet = new Pet();
-        pet.setImg(addPetDto.img());
-        pet.setTag(addPetDto.tag());
+        pet.setImgPath(filePath);
+        pet.setTag(tag);
         petRepo.savePet(pet);
-        return convertPetToDto(pet);
+        return pet;
     }
 
-    private static PetDto convertPetToDto(Pet pet) {
-        PetDto petDto = new PetDto(
-                pet.getId(),
-                pet.getImg(),
-                pet.getTag(),
-                pet.getCreated(),
-                pet.getFavorite()
-        );
-        return petDto;
-    }
+//    private static PetDto convertPetToDto(Pet pet) {
+//        PetDto petDto = new PetDto(
+//                pet.getId(),
+//                pet.getImgPath(),
+//                pet.getTag(),
+//                pet.getCreated(),
+//                pet.getFavorite()
+//        );
+//        return petDto;
+//    }
 }
