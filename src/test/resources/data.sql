@@ -1,0 +1,1 @@
+INSERT INTO public.pet(pet_id, pet_img, pet_tag, pet_created, pet_favorite) VALUES ('3828', 'src/main/resources/static/pet-uploads/test.jpeg', 'cat', '2023-07-06 12:08:37.047688', '0')
