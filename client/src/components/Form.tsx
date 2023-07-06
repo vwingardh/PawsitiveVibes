@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { Card } from './Card'
 
 type FormDataProps = {
-    image: File | Blob | null ;
+    image: File | null ;
     tag: string;
 }
 
@@ -12,14 +13,13 @@ const pets = [
 ] 
 
 export const Form = () => {
-
-    const [tag, setTag] = useState('');
+    const [tag, setTag] = useState(pets[0].value);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    // const [newPet, setNewPet] = useState<number>(0);
+    const [newPet, setNewPet] = useState<number>(0);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        postPet({image: selectedFile, tag})
+        postPet({image: selectedFile, tag: tag})
     }
 
     const handleImage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,7 @@ export const Form = () => {
     }
 
     const postPet = ({image, tag}: FormDataProps) => {
-        let formData = new FormData();
+        const formData = new FormData();
         if (image) {
             formData.append('image', image);
         }
@@ -45,7 +45,7 @@ export const Form = () => {
         })
         .then(response => {
             console.log(response);
-            // setNewPet((newPet: number) => newPet + 1);
+            setNewPet((newPet: number) => newPet + 1);
         })
         .catch((exception) => console.error(exception))
     }
@@ -65,6 +65,7 @@ export const Form = () => {
                 </select>
                 <button type="submit" className="">Upload</button>
         </form>
+        <Card newPet={newPet}/>
         </>
     )
 }
