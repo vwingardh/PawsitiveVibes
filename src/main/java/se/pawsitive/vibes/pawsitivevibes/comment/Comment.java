@@ -2,6 +2,7 @@ package se.pawsitive.vibes.pawsitivevibes.comment;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+import se.pawsitive.vibes.pawsitivevibes.pet.Pet;
 
 import java.time.LocalDateTime;
 
@@ -23,6 +24,10 @@ public class Comment {
     @ColumnDefault("0")
     private int favorite;
 
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
+
     @PrePersist
     protected void created() {
         this.created = LocalDateTime.now();
@@ -32,11 +37,12 @@ public class Comment {
 
     }
 
-    public Comment(Long id, String message, LocalDateTime created, int favorite) {
+    public Comment(Long id, String message, LocalDateTime created, int favorite, Pet pet) {
         this.id = id;
         this.message = message;
         this.created = created;
         this.favorite = favorite;
+        this.pet = pet;
     }
 
     public Long getId() {
@@ -69,5 +75,13 @@ public class Comment {
 
     public void setFavorite(int favorite) {
         this.favorite = favorite;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
 }
