@@ -1,11 +1,11 @@
 import './App.css'
-import { Form } from './components/Form'
+import { ImageForm } from './components/ImageForm'
 
 function App() {
 
   return (
     <>
-      <Form />
+      <ImageForm />
     </>
   )
 }

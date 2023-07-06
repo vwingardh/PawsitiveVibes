@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Comment } from './Comment'
+import { CommentForm } from './CommentForm'
 
 type PetDataProps = {
     id: number;
@@ -34,7 +34,7 @@ export const Card = ({ newPet }: NewPetProp ) => {
                     <ul className="card__list">
                         <li><img className="card__img" src={`http://localhost:8080/${pet.imgPath}`} /></li>
                         <li className="">Favorites: {pet.favorite}</li>
-                        {/* <Comment petId={pet.id} /> */}
+                        <CommentForm petId={pet.id} />
                     </ul>
                 </div>
             ))}
