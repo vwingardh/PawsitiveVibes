@@ -31,7 +31,8 @@ export const Card = ({ newPet }: NewPetProp ) => {
     const handleClick = (pet: PetDataProps) => {
         axios.post('//localhost:8080/api/pets/' + pet.id + '/favorites')
         .then(response => {
-            setAllPets(allPets.map(p => p.id === pet.id ? { ...p, favorite: response.data.favorites } : p))
+            const updatedFavorites = response.data.favorite;
+            setAllPets(allPets.map(p => p.id === pet.id ? { ...p, favorite: updatedFavorites } : p))
         })
         .catch(error => {
             console.error(error);
