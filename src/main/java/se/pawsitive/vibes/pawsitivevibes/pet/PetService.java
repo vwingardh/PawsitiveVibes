@@ -88,4 +88,12 @@ public class PetService {
         }
         petRepo.deletePet(pet);
     }
+
+    public void deleteComment(Long commentId) {
+        Comment comment = commentRepo.getCommentById(commentId);
+        if (comment == null) {
+            throw new NoSuchElementException("No comment found with id " + commentId);
+        }
+        commentRepo.deleteComment(comment);
+    }
 }
