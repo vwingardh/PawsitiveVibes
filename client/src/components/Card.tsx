@@ -46,7 +46,7 @@ export const Card = ({ newPet }: NewPetProp ) => {
           setAllPets(prevPets => prevPets.filter(p => p.id !== pet.id));
           setPetRemoved((petRemoved: number) => petRemoved + 1);
         })
-        .catch((exception) => console.log(exception))
+        .catch((exception) => console.error(exception))
     }
 
     return (
