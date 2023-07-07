@@ -65,10 +65,10 @@ export const CommentForm = ({ petId }: PetIdProps) => {
 
     return (
         <>
-        <form className="" method="post" onSubmit={handleSubmit}>
-            <label className="form__label" htmlFor="newCommentForm">Leave a comment: </label>
-            <input type="text" className="form__input-name" value={comment} onChange={handleChange} placeholder="Enter Message" required />
-            <button type="submit" className="form__button-addDev">Submit</button>
+        <form className="comment-form" method="post" onSubmit={handleSubmit}>
+            <label className="comment-form__label" htmlFor="newCommentForm">Leave a comment: </label>
+            <input type="text" className="comment-form__input" value={comment} onChange={handleChange} placeholder="Enter Message" required />
+            <button type="submit" className="comment-fomr__button">Submit</button>
         </form>
         <Comments allComments={allComments} onDelete={handleDelete}/>
         </>

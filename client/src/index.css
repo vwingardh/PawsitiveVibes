@@ -32,14 +32,14 @@ body {
 
 .card {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  justify-content: space-evenly;
-  margin: 0 2% 4%;
+  align-items: center;
+  margin: 0 2% 10%;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  box-shadow: -5px 3px 20px darkslategrey;
+  box-shadow: -5px 3px 20px black;
   flex-basis: 100%;
+  overflow: hidden;
 }
 
 .card__list {
@@ -49,25 +49,65 @@ body {
   padding-left: 0;
 }
 
+.card__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.card__item {
+  margin-left: 5%;
+  margin-top: 3%;
+}
+
 .card__img {
-  max-width: 100%;
-  max-height: 350px;
-  height: auto;
-  margin: auto;
+  width: 100%;
+  height: 450px;
   object-fit: cover;
+}
+
+.card__detele-btn {
+  background-color: #242424;
+  border: 1px #E43F50 solid;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 15px 2px 0;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.card__delete-btn:hover {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #f44336;
 }
 
 .form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 500px; 
+  border-radius: 8px;
   margin-bottom: 12%;
   border-radius: 8px;
-  box-shadow: -5px 3px 20px darkslategrey;
+  box-shadow: -5px 3px 20px black;
 }
 
-.form__header {
+.form__header-h1 {
   margin-bottom: 4%;
-  font-size: 16px;
+  font-size: 30px;
+}
+
+.form__header-h2 {
+  font-size: 22px;
 }
 
 .form__label {
@@ -76,7 +116,7 @@ body {
 }
 
 .form__input {
-  margin-bottom: 3%;
+  margin-bottom: 5%;
   padding: 2%;
 }
 
@@ -89,6 +129,73 @@ body {
 .form__button {
   width: 40%;
   align-self: center;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 400px; 
+}
+
+.comment-form__label {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.comment-form__input {
+  padding: 10px;
+  border: 1px solid lightslategray;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.comment-form__button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-form__button:hover {
+  background-color: #0056b3;
+}
+
+.comment-card {
+  background-color: #434242;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 10px 15px;
+  position: relative;
+}
+
+.comment-card__list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+
+.comment-card__delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #434242;
+  color: white;
+  border: 1px #FF4B5C solid;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.comment-card__delete-btn:hover {
+  background-color: #E43F50;
 }
 
 button {

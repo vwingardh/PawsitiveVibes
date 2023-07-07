@@ -55,9 +55,11 @@ export const Card = ({ newPet }: NewPetProp ) => {
                 <div key={pet.id} className="card">
                     <ul className="card__list">
                         <li><img className="card__img" src={`http://localhost:8080/${pet.imgPath}`} /></li>
-                        <li className="" onClick={() => handleClick(pet)}>Favorites: {pet.favorite}</li>
+                        <div className="card__container">
+                            <li className="card__item" onClick={() => handleClick(pet)}>Favorites: {pet.favorite}</li>
+                            <button className="card__detele-btn" type="submit" onClick={() => handleDelete(pet)}>Delete</button>
+                        </div>
                         <CommentForm petId={pet.id} />
-                        <button type="submit" onClick={() => handleDelete(pet)}>Delete</button>
                     </ul>
                 </div>
             ))}

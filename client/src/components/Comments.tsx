@@ -13,11 +13,11 @@ export const Comments = ({ allComments, onDelete }: CommentsProps & { onDelete: 
   return (
     <>
         {allComments.map((comment) => (
-            <div key={comment.id} className="card">
-                <ul className="card__list">
+            <div key={comment.id} className="comment-card">
+                <ul className="comment-card__list">
                     <li>{comment.message}</li>
                 </ul>
-                <button type="submit" onClick={() => onDelete(comment)}>Delete</button>
+                <button type="submit" className="comment-card__delete-btn" onClick={() => onDelete(comment)}>Delete</button>
             </div>
         ))}
     </>
