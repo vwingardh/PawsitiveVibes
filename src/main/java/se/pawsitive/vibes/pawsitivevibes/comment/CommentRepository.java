@@ -2,8 +2,6 @@ package se.pawsitive.vibes.pawsitivevibes.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import se.pawsitive.vibes.pawsitivevibes.pet.Pet;
-
 import java.util.NoSuchElementException;
 import java.util.Optional;
 

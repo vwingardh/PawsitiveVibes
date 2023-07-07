@@ -1,15 +1,16 @@
 package se.pawsitive.vibes.pawsitivevibes.pet;
 
 import jakarta.transaction.Transactional;
+import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import se.pawsitive.vibes.pawsitivevibes.comment.Comment;
 import se.pawsitive.vibes.pawsitivevibes.comment.CommentRepository;
-
 import java.io.*;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
