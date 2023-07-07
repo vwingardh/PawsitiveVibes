@@ -10,6 +10,7 @@ import se.pawsitive.vibes.pawsitivevibes.comment.Comment;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -61,6 +62,16 @@ public class PetController {
             Comment comment = service.createComment(message, petId);
             URI location = URI.create("/api/pets/" + petId + "/comments/" + comment.getId());
             return ResponseEntity.created(location).body(comment);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/{petId}/favorites")
+    public ResponseEntity<Object> addFavorite(@PathVariable Long petId) {
+        try {
+            Pet pet = service.addFavorite(petId);
+            return ResponseEntity.ok(pet);
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

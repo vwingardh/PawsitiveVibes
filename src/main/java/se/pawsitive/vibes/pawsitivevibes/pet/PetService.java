@@ -58,6 +58,17 @@ public class PetService {
         return pet;
     }
 
+    public Pet addFavorite(Long petId) {
+        Pet pet = petRepo.getPetById(petId);
+        if (pet == null) {
+            throw new NoSuchElementException("No pet found with id " + petId);
+        }
+        int count = pet.getFavorite() + 1;
+        pet.setFavorite(count);
+        petRepo.savePet(pet);
+        return pet;
+    }
+
     public Comment createComment(String message, Long petId) {
         Pet pet = petRepo.getPetById(petId);
         if (pet == null) {
