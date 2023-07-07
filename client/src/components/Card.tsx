@@ -16,6 +16,7 @@ type NewPetProp = {
 
 export const Card = ({ newPet }: NewPetProp ) => {
     const [allPets, setAllPets] = useState<Array<PetDataProps>>([]);
+    const [petRemoved, setPetRemoved] = useState(0);
 
     useEffect(() => {
         axios.get('//localhost:8080/api/pets')
@@ -37,6 +38,16 @@ export const Card = ({ newPet }: NewPetProp ) => {
         })
     }
 
+    const handleDelete = (pet: PetDataProps) => {
+        axios.delete('//localhost:8080/api/pets/' + pet.id)
+        .then(response => {
+          console.log(response);
+          setAllPets(prevPets => prevPets.filter(p => p.id !== pet.id));
+          setPetRemoved((petRemoved: number) => petRemoved + 1);
+        })
+        .catch((exception) => console.log(exception))
+    }
+
     return (
         <>
             {allPets.map((pet) => (
@@ -45,6 +56,7 @@ export const Card = ({ newPet }: NewPetProp ) => {
                         <li><img className="card__img" src={`http://localhost:8080/${pet.imgPath}`} /></li>
                         <li className="" onClick={() => handleClick(pet)}>Favorites: {pet.favorite}</li>
                         <CommentForm petId={pet.id} />
+                        <button type="submit" onClick={() => handleDelete(pet)}>Delete</button>
                     </ul>
                 </div>
             ))}
