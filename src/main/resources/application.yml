@@ -1,20 +1,21 @@
 debug: true
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: pguser
-    password: pgpassword
   jpa:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: pguser
+    password: pgpassword
+    driver-class-name: org.postgresql.Driver
   sql:
     init:
       platform: postgresql
       mode: always
-    output:
-      ansi:
-        enabled: always
+  output:
+    ansi:
+      enabled: always
   web:
     resources:
       static-locations: file:src/main/resources/static
