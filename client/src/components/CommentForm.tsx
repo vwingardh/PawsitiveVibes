@@ -10,6 +10,13 @@ type CommentDataProps = {
     comment: string;
 }
 
+type CommentsDataProps = {
+    id: number;
+    message: string;
+    created: string;
+    favorite: number;
+}
+
 export const CommentForm = ({ petId }: PetIdProps) => {
 
     const [comment, setComment] = useState('');
@@ -37,6 +44,15 @@ export const CommentForm = ({ petId }: PetIdProps) => {
         .catch((exception) => console.error(exception))
     }
 
+    const handleDelete = (comment: CommentsDataProps) => {
+        axios.delete('//localhost:8080/api/pets/' + comment.id + '/comments')
+        .then(response => {
+          console.log(response);
+          setAllComments(allComments.filter(c => c.id !== comment.id));
+        })
+        .catch((exception) => console.error(exception))
+    }
+
     useEffect(() => {
         axios.get('//localhost:8080/api/pets/' + petId + '/comments')
         .then(response => {
@@ -54,7 +70,7 @@ export const CommentForm = ({ petId }: PetIdProps) => {
             <input type="text" className="form__input-name" value={comment} onChange={handleChange} placeholder="Enter Message" required />
             <button type="submit" className="form__button-addDev">Submit</button>
         </form>
-        <Comments allComments={allComments}/>
+        <Comments allComments={allComments} onDelete={handleDelete}/>
         </>
     )
 }
