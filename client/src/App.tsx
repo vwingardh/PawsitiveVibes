@@ -5,6 +5,7 @@ function App() {
 
   return (
     <>
+      <h1>PawsitiveVibes</h1>
       <ImageForm />
     </>
   )
