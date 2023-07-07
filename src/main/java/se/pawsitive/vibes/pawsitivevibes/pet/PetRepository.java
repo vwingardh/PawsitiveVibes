@@ -35,4 +35,8 @@ public class PetRepository {
     public Pet savePet(Pet newPet) {
         return petRepo.save(newPet);
     }
+
+    public void deletePet(Pet pet) {
+        petRepo.delete(pet);
+    }
 }

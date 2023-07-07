@@ -67,6 +67,16 @@ public class PetController {
         }
     }
 
+    @DeleteMapping("/{petId}")
+    public ResponseEntity<Object> deletePet(@PathVariable Long petId) {
+        try {
+            service.deletePet(petId);
+            return ResponseEntity.noContent().build();
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
     @PostMapping("/{petId}/favorites")
     public ResponseEntity<Object> addFavorite(@PathVariable Long petId) {
         try {
