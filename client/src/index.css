@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -14,10 +20,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
+body {
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 4%;
+  border-radius: 24px;
+  box-shadow: -5px 3px 20px black;
 }
 
 
@@ -31,7 +40,6 @@
   border-bottom-right-radius: 8px;
   box-shadow: -5px 3px 20px darkslategrey;
   flex-basis: 100%;
-  width: 100%;
 }
 
 .card__list {
@@ -47,6 +55,40 @@
   height: auto;
   margin: auto;
   object-fit: cover;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12%;
+  border-radius: 8px;
+  box-shadow: -5px 3px 20px darkslategrey;
+}
+
+.form__header {
+  margin-bottom: 4%;
+  font-size: 16px;
+}
+
+.form__label {
+  text-align: left;
+  margin-bottom: 1%;
+}
+
+.form__input {
+  margin-bottom: 3%;
+  padding: 2%;
+}
+
+.form__select {
+  margin-bottom: 6%;
+  padding: 2%;
+  width: 40%;
+}
+
+.form__button {
+  width: 40%;
+  align-self: center;
 }
 
 button {

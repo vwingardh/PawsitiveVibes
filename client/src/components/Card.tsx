@@ -20,12 +20,22 @@ export const Card = ({ newPet }: NewPetProp ) => {
     useEffect(() => {
         axios.get('//localhost:8080/api/pets')
         .then(response => {
-            setAllPets(response.data)
+            setAllPets(response.data.map(pet => ({ ...pet, favorite: 0 })))
         })
         .catch(error => {
             console.error(error);
         })
     }, [newPet]);
+
+    const handleClick = (pet: PetDataProps) => {
+        axios.post('//localhost:8080/api/pets/' + pet.id + '/favorites')
+        .then(response => {
+            setAllPets(allPets.map(p => p.id === pet.id ? { ...p, favorite: response.data.favorites } : p))
+        })
+        .catch(error => {
+            console.error(error);
+        })
+    }
 
     return (
         <>
@@ -33,7 +43,7 @@ export const Card = ({ newPet }: NewPetProp ) => {
                 <div key={pet.id} className="card">
                     <ul className="card__list">
                         <li><img className="card__img" src={`http://localhost:8080/${pet.imgPath}`} /></li>
-                        <li className="">Favorites: {pet.favorite}</li>
+                        <li className="" onClick={() => handleClick(pet)}>Favorites: {pet.favorite}</li>
                         <CommentForm petId={pet.id} />
                     </ul>
                 </div>

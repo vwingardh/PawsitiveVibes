@@ -52,18 +52,18 @@ export const ImageForm = () => {
 
     return (
         <>
-        <form className="" method="post" onSubmit={handleSubmit}>
-            <h2 className="">Upload a Pet</h2>
-            <label className="" htmlFor="chooseFile">Upload: </label>
-            <input name="chooseFile" onChange={handleImage} type="file" className="" accept="image/png, image/jpeg" required />
+        <form className="form" method="post" onSubmit={handleSubmit}>
+            <h2 className="form__header">Upload a Pet</h2>
+            <label className="form__label" htmlFor="chooseFile">Upload: </label>
+            <input name="chooseFile" onChange={handleImage} type="file" className="form__input" accept="image/png, image/jpeg" required />
         
-            <label className="" htmlFor="petTag">Choose Pet: </label>
-                <select id="newDeveloperBootcamp" className="" onChange={handleTag}>
+            <label className="form__label" htmlFor="petTag">Choose Pet: </label>
+                <select id="newDeveloperBootcamp" className="form__select" onChange={handleTag}>
                     {pets.map((option) => (
                         <option key={option.value} value={option.value}>{option.label}</option>
                     ))}
                 </select>
-                <button type="submit" className="">Upload</button>
+                <button type="submit" className="form__button">Upload</button>
         </form>
         <Card newPet={newPet}/>
         </>
