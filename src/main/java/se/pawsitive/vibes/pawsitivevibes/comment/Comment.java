@@ -27,7 +27,7 @@ public class Comment {
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "pet_id", nullable = false)
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
     @PrePersist
