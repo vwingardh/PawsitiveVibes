@@ -1,6 +1,8 @@
 # PawsitiveVibes
 A simple web app for pet lovers to share photos of their pets. It was built during Salt's 24 hour full stack challenge. Users are able to upload images of their pets, comment on the images, and favorite images. Users can also delete the comments and images. 
 
+<img src="https://github.com/vwingardh/PawsitiveVibes/assets/101557392/b92b4287-8e4a-42a9-846e-a3ee984504ef" width="700px" height="600px">
+
 ## Technologies Used
 This app was built with the following:
 * Java
